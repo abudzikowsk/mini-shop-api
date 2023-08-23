@@ -1,7 +1,7 @@
 ﻿using System;
-using Trening6.ViewModels;
+using MiniShopApi.ViewModels;
 
-namespace Trening6.Database.Entitites
+namespace MiniShopApi.Database.Entitites
 {
 	public class Order
 	{

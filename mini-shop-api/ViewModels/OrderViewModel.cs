@@ -1,4 +1,4 @@
-﻿namespace Trening6.ViewModels
+﻿namespace MiniShopApi.ViewModels
 {
 	public class OrderViewModel
 	{

@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Trening6.Database.Entitites;
+using MiniShopApi.Database.Entitites;
 
-namespace Trening6.Database.Repositories
+namespace MiniShopApi.Database.Repositories
 {
 	public class OrderRepository
 	{

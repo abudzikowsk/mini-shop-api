@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Trening6.Database;
-using Trening6.Database.Repositories;
+using MiniShopApi.Database;
+using MiniShopApi.Database.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

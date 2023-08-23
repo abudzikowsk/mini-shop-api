@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Trening6.Database.Entitites
+namespace MiniShopApi.Database.Entitites
 {
 	public class Product
 	{

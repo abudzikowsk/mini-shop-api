@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Trening6.Database.Repositories;
-using Trening6.ViewModels;
+﻿using Microsoft.AspNetCore.Mvc;
+using MiniShopApi.Database.Repositories;
+using MiniShopApi.ViewModels;
 
-namespace Trening6.Controllers
+namespace MiniShopApi.Controllers
 {
 	[ApiController]
 	[Route("orders")]
