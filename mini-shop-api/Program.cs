@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer("Data Source=localhost; Initial Catalog=Trening6; User Id=sa; Password=bigStrongPwd12345!; Persist Security Info=False;Encrypt=False"));
+    options.UseSqlServer("Data Source=localhost; Initial Catalog=MiniShopApi; User Id=sa; Password=bigStrongPwd12345!; Persist Security Info=False;Encrypt=False"));
 
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<ProductRepository>();
