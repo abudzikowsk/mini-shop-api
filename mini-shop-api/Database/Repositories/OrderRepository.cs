@@ -23,17 +23,20 @@ namespace MiniShopApi.Database.Repositories
             return applicationDbContext.Orders.Include(x => x.Product).Include(x => x.Product).ToList();
         }
 
-        public void CreateOrder(string userid, int productid, int quantity)
+        public Order CreateOrder(string userid, int productid, int quantity, decimal price)
         {
             var newOrder = new Order
             {
                 UserId = userid,
                 ProductId = productid,
-                Quantity = quantity
+                Quantity = quantity,
+                Price = price
             };
 
-            applicationDbContext.Orders.Add(newOrder);
+            var addedOrder = applicationDbContext.Orders.Add(newOrder);
             applicationDbContext.SaveChanges();
+
+            return addedOrder.Entity;
         }
 
         public void OrderToDelete(int id)

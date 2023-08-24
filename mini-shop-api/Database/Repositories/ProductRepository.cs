@@ -22,15 +22,17 @@ namespace MiniShopApi.Database.Repositories
             return applicationDbContext.Products.ToList();
         }
 
-        public void CreateProduct(string name, decimal price)
+        public Product CreateProduct(string name, decimal price)
         {
             var newProduct = new Product
             {
                 Name = name,
                 Price = price
             };
-            applicationDbContext.Products.Add(newProduct);
+            var addedProduct = applicationDbContext.Products.Add(newProduct);
             applicationDbContext.SaveChanges();
+
+            return addedProduct.Entity;
         }
 
         public void ProductToUpdate(int id, string name, decimal price)

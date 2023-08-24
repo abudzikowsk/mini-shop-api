@@ -17,7 +17,7 @@ namespace MiniShopApi.Database.Repositories
             return applicationDbContext.Users.Where(x => x.Id == id).SingleOrDefault();
         }
 
-        public void CreateUser(string name, string surename)
+        public User CreateUser(string name, string surename)
         {
             var newUser = new User
             {
@@ -25,8 +25,10 @@ namespace MiniShopApi.Database.Repositories
                 Surname = surename
             };
 
-            applicationDbContext.Users.Add(newUser);
+            var addedUser = applicationDbContext.Users.Add(newUser);
             applicationDbContext.SaveChanges();
+
+            return addedUser.Entity;
         }
         
         public void UpdateUser(string id,string name, string surename)
