@@ -39,14 +39,14 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 
 ## Endpoints
 
-## Orders:
+### Orders:
 
 - `GET /orders`: Retrieve a list of all orders.
 - `POST /orders`: Create a new order.
 - `GET /orders/{id}`: Retrieve details of a specific order.
 - `DELETE /orders/{id}`: Delete an order.
 
-## Products:
+### Products:
 
 - `GET /products`: Retrieve a list of all products.
 - `POST /products`: Create a new product.
@@ -54,7 +54,7 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 - `PUT /products/{id}`: Update details of a product.
 - `DELETE /products/{id}`: Delete a product.
 
-## User:
+### User:
 
 - `GET /users`: Retrieve a list of all users.
 - `POST /users`: Create a new user.
