@@ -62,7 +62,6 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 - `PUT /users/{id}`: Update details of a user.
 - `DELETE /users/{id}`: Delete a user.
 
-
 ## Setup and Installation
 
 1. Clone the repository: `git clone https://github.com/a.budzikowsk/mini-shop-api.git`
@@ -71,3 +70,23 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 4. Configure the database connection string in `appsettings.json`.
 5. Apply database migrations: `dotnet ef database update`
 6. Run the application: `dotnet run`
+
+## Possible Use Cases after expanding the application:
+
+1. **Integration with External Systems**: The ability to integrate the API with other systems, such as accounting or inventory systems.
+
+2. **Data Analytics**: Utilizing data from the API to analyze sales trends, customer behaviors, and other business aspects.
+
+3. **Order-Based Recommendations**: The system can suggest product recommendations based on previous customers' purchases.
+
+4. **Loyalty Programs**: Implementing a loyalty program where customers earn points for purchases and can redeem them for rewards.
+
+5. **Returns and Complaints Handling**: Allowing customers to initiate returns and complaints using relevant endpoints.
+
+6. **Statistical Overview**: Administrators can generate reports and statistics about sales, product popularity, and user activity.
+
+7. **Customer Support**: The ability to provide customer support through interactions with the API.
+
+8. **Payment Integration**: Extending the API to integrate with various online payment providers.
+
+9. **Transportation System Integration**: The capability to send delivery information and track shipments.
