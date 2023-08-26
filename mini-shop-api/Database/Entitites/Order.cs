@@ -19,11 +19,11 @@ namespace MiniShopApi.Database.Entitites
 			return new OrderViewModel
 			{
 				Id = Id,
-				ProductName = Product.Name,
+				ProductName = Product?.Name,
 				Price = Price,
 				Quantity = Quantity,
-				UserFirstname = User.Name,
-				UserSurname = User.Surname
+				UserFirstname = User?.Name,
+				UserSurname = User?.Surname
 			};
 		}
 	}

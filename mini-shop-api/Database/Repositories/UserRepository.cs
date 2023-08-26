@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using MiniShopApi.Database.Entitites;
 
 namespace MiniShopApi.Database.Repositories
@@ -15,6 +16,11 @@ namespace MiniShopApi.Database.Repositories
         public User GetUserById(string id)
         {
             return applicationDbContext.Users.Where(x => x.Id == id).SingleOrDefault();
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return applicationDbContext.Users.ToList();
         }
 
         public User CreateUser(string name, string surename)

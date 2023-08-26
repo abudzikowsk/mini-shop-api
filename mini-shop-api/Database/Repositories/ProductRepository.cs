@@ -35,7 +35,7 @@ namespace MiniShopApi.Database.Repositories
             return addedProduct.Entity;
         }
 
-        public void ProductToUpdate(int id, string name, decimal price)
+        public void UpdateProduct(int id, string name, decimal? price)
         {
             var productToUpdate = applicationDbContext.Products.SingleOrDefault(x => x.Id == id);
 
@@ -44,11 +44,18 @@ namespace MiniShopApi.Database.Repositories
                 return;
             }
 
-            productToUpdate.Name = name;
-            productToUpdate.Price = price;
+            if (name != null)
+            {
+                productToUpdate.Name = name;
+            }
+
+            if (price.HasValue)
+            {
+                productToUpdate.Price = price.Value;
+
+            }
 
             applicationDbContext.SaveChanges();
-
         }
 
         public void DeleteProduct(int id)

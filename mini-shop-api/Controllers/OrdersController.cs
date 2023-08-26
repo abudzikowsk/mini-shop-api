@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using MiniShopApi.Database.Repositories;
 using MiniShopApi.ViewModels;
 
@@ -30,7 +31,22 @@ namespace MiniShopApi.Controllers
             {
                 result.Add(order.MapToViewModel());
             }
+            
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public ActionResult<OrderViewModel> GetOrderById(int id)
+        {
+            var order = orderRepository.GetOrderById(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(order.MapToViewModel());
         }
 
         [HttpPost]
@@ -57,6 +73,15 @@ namespace MiniShopApi.Controllers
                 createOrderViewModel.Quantity*product.Price);
 
             return Ok(newOrder.MapToViewModel());
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IActionResult DeleteOrder(int id)
+        {
+            orderRepository.DeleteOrder(id);
+
+            return Ok();
         }
 	}
 }

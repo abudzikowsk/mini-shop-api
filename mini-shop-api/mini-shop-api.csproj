@@ -38,6 +38,5 @@
     <Folder Include="Database\Entitites\" />
     <Folder Include="Database\Repositories\" />
     <Folder Include="Controllers\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

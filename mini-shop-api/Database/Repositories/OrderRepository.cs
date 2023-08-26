@@ -39,7 +39,7 @@ namespace MiniShopApi.Database.Repositories
             return addedOrder.Entity;
         }
 
-        public void OrderToDelete(int id)
+        public void DeleteOrder(int id)
         {
             var orderToDelete = applicationDbContext.Orders.SingleOrDefault(x => x.Id == id);
 
