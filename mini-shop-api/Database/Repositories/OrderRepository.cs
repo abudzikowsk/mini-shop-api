@@ -13,17 +13,17 @@ namespace MiniShopApi.Database.Repositories
             this.applicationDbContext = applicationDbContext;
         }
 
-        public Order GetOrderById(int id)
+        public async Task<Order> GetOrderById(int id)
         {
-            return applicationDbContext.Orders.Include(y => y.Product).Include(z => z.User).SingleOrDefault(x => x.Id == id);
+            return await applicationDbContext.Orders.Include(y => y.Product).Include(z => z.User).SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public List<Order> GetAllOrders()
+        public async Task<List<Order>> GetAllOrders()
         {
-            return applicationDbContext.Orders.Include(x => x.Product).Include(x => x.Product).ToList();
+            return await applicationDbContext.Orders.Include(x => x.Product).Include(x => x.Product).ToListAsync();
         }
 
-        public Order CreateOrder(string userid, int productid, int quantity, decimal price)
+        public async Task<Order> CreateOrder(string userid, int productid, int quantity, decimal price)
         {
             var newOrder = new Order
             {
@@ -34,12 +34,12 @@ namespace MiniShopApi.Database.Repositories
             };
 
             var addedOrder = applicationDbContext.Orders.Add(newOrder);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
 
             return addedOrder.Entity;
         }
 
-        public void DeleteOrder(int id)
+        public async Task DeleteOrder(int id)
         {
             var orderToDelete = applicationDbContext.Orders.SingleOrDefault(x => x.Id == id);
 
@@ -49,7 +49,7 @@ namespace MiniShopApi.Database.Repositories
             }
 
             applicationDbContext.Orders.Remove(orderToDelete);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
         }
 	}
 }

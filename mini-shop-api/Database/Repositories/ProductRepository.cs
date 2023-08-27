@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using MiniShopApi.Database.Entitites;
 
 namespace MiniShopApi.Database.Repositories
@@ -12,17 +13,17 @@ namespace MiniShopApi.Database.Repositories
             this.applicationDbContext = applicationDbContext;
         }
 
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
-            return applicationDbContext.Products.SingleOrDefault(x => x.Id == id);
+            return await applicationDbContext.Products.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public List<Product> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            return applicationDbContext.Products.ToList();
+            return await applicationDbContext.Products.ToListAsync();
         }
 
-        public Product CreateProduct(string name, decimal price)
+        public async Task<Product> CreateProduct(string name, decimal price)
         {
             var newProduct = new Product
             {
@@ -30,14 +31,14 @@ namespace MiniShopApi.Database.Repositories
                 Price = price
             };
             var addedProduct = applicationDbContext.Products.Add(newProduct);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
 
             return addedProduct.Entity;
         }
 
-        public void UpdateProduct(int id, string name, decimal? price)
+        public async Task UpdateProduct(int id, string name, decimal? price)
         {
-            var productToUpdate = applicationDbContext.Products.SingleOrDefault(x => x.Id == id);
+            var productToUpdate = await applicationDbContext.Products.SingleOrDefaultAsync(x => x.Id == id);
 
             if (productToUpdate == null)
             {
@@ -55,10 +56,10 @@ namespace MiniShopApi.Database.Repositories
 
             }
 
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
         }
 
-        public void DeleteProduct(int id)
+        public async Task DeleteProduct(int id)
         {
             var productToDelete = applicationDbContext.Products.SingleOrDefault(x => x.Id == id);
 
@@ -68,7 +69,7 @@ namespace MiniShopApi.Database.Repositories
             }
 
             applicationDbContext.Products.Remove(productToDelete);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
         }
 
     }

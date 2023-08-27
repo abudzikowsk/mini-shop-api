@@ -21,11 +21,11 @@ namespace MiniShopApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<OrderViewModel>> GetOrders()
+        public async Task<ActionResult<List<OrderViewModel>>> GetOrders()
         {
             var result = new List<OrderViewModel>();
 
-            var orders = orderRepository.GetAllOrders();
+            var orders = await orderRepository.GetAllOrders();
 
             foreach(var order in orders)
             {
@@ -37,9 +37,9 @@ namespace MiniShopApi.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public ActionResult<OrderViewModel> GetOrderById(int id)
+        public async Task<ActionResult<OrderViewModel>> GetOrderById(int id)
         {
-            var order = orderRepository.GetOrderById(id);
+            var order = await orderRepository.GetOrderById(id);
 
             if (order == null)
             {
@@ -50,23 +50,23 @@ namespace MiniShopApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<OrderViewModel> CreateOrder(CreateOrderViewModel createOrderViewModel)
+        public async Task<ActionResult<OrderViewModel>> CreateOrder(CreateOrderViewModel createOrderViewModel)
         {
-            var user = userRepository.GetUserById(createOrderViewModel.UserId);
+            var user = await userRepository.GetUserById(createOrderViewModel.UserId);
 
             if(user == null)
             {
                 return BadRequest("User not found.");
             }
 
-            var product = productRepository.GetProductById(createOrderViewModel.ProductId);
+            var product = await productRepository.GetProductById(createOrderViewModel.ProductId);
 
             if(product == null)
             {
                 return BadRequest("Product not found.");
             }
 
-            var newOrder = orderRepository.CreateOrder(
+            var newOrder = await orderRepository.CreateOrder(
                 createOrderViewModel.UserId,
                 createOrderViewModel.ProductId,
                 createOrderViewModel.Quantity,
@@ -77,9 +77,9 @@ namespace MiniShopApi.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        public IActionResult DeleteOrder(int id)
+        public async Task<IActionResult> DeleteOrder(int id)
         {
-            orderRepository.DeleteOrder(id);
+            await orderRepository.DeleteOrder(id);
 
             return Ok();
         }

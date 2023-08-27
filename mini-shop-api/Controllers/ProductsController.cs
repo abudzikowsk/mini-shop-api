@@ -18,11 +18,11 @@ namespace MiniShopApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ProductViewModel>> GetProducts()
+        public async Task<ActionResult<List<ProductViewModel>>> GetProducts()
         {
 	        var result = new List<ProductViewModel>();
 
-	        var products = productRepository.GetAllProducts();
+	        var products = await productRepository.GetAllProducts();
 
 	        foreach (var product in products)
 	        {
@@ -34,9 +34,9 @@ namespace MiniShopApi.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public ActionResult<ProductViewModel> GetProductById(int id)
+        public async Task<ActionResult<ProductViewModel>> GetProductById(int id)
         {
-	        var product = productRepository.GetProductById(id);
+	        var product = await productRepository.GetProductById(id);
 
 	        if (product == null)
 	        {
@@ -47,18 +47,18 @@ namespace MiniShopApi.Controllers
         }
 
 		[HttpPost]
-		public ActionResult<ProductViewModel> CreateProduct(CreateProductViewModel createProductViewModel)
+		public async Task<ActionResult<ProductViewModel>> CreateProduct(CreateProductViewModel createProductViewModel)
 		{
-			var newProduct = productRepository.CreateProduct(createProductViewModel.Name, createProductViewModel.Price);
+			var newProduct = await productRepository.CreateProduct(createProductViewModel.Name, createProductViewModel.Price);
 
 			return Ok(newProduct.MapToViewModel());
 		}
 
 		[HttpPut]
 		[Route("{id:int}")]
-		public IActionResult UpdateProduct(int id, UpdateProductViewModel updateProductViewModel)
+		public async Task<IActionResult> UpdateProduct(int id, UpdateProductViewModel updateProductViewModel)
 		{ 
-			productRepository.UpdateProduct(id ,updateProductViewModel.Name, updateProductViewModel.Price);
+			await productRepository.UpdateProduct(id ,updateProductViewModel.Name, updateProductViewModel.Price);
 
 			return Ok();
 		}
@@ -66,9 +66,9 @@ namespace MiniShopApi.Controllers
 
 		[HttpDelete]
 		[Route("{id:int}")]
-		public IActionResult DeleteOrder(int id)
+		public async Task<IActionResult> DeleteOrder(int id)
 		{
-			productRepository.DeleteProduct(id);
+			await productRepository.DeleteProduct(id);
 
 			return Ok();
 		}

@@ -18,11 +18,11 @@ namespace MiniShopApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<UserViewModel> GetUsers()
+        public async Task<ActionResult<UserViewModel>> GetUsers()
         {
 	        var result = new List<UserViewModel>();
 
-	        var users = userRepository.GetAllUsers();
+	        var users = await userRepository.GetAllUsers();
 
 	        foreach (var user in users)
 	        {
@@ -34,9 +34,9 @@ namespace MiniShopApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<UserViewModel> GetUserById(string id)
+        public async Task<ActionResult<UserViewModel>> GetUserById(string id)
         {
-	        var user = userRepository.GetUserById(id);
+	        var user = await userRepository.GetUserById(id);
 
 	        if (user == null)
 	        {
@@ -47,27 +47,27 @@ namespace MiniShopApi.Controllers
         }
 
 		[HttpPost]
-		public ActionResult<UserViewModel> CreateUser(CreateUserViewModel createUserViewModel)
+		public async Task<ActionResult<UserViewModel>> CreateUser(CreateUserViewModel createUserViewModel)
 		{
-			var newUser = userRepository.CreateUser(createUserViewModel.Name, createUserViewModel.Surname);
+			var newUser = await userRepository.CreateUser(createUserViewModel.Name, createUserViewModel.Surname);
 
 			return Ok(newUser.MapToViewModel());
 		}
 
 		[HttpPut]
 		[Route("{id}")]
-		public IActionResult UpdateUser(string id, UpdateUserViewModel updateUserViewModel)
+		public async Task<IActionResult> UpdateUser(string id, UpdateUserViewModel updateUserViewModel)
 		{
-			userRepository.UpdateUser(id, updateUserViewModel.Name, updateUserViewModel.Surname);
+			await userRepository.UpdateUser(id, updateUserViewModel.Name, updateUserViewModel.Surname);
 
 			return Ok();
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
-		public IActionResult DeleteUser(string id)
+		public async Task<IActionResult> DeleteUser(string id)
 		{
-			userRepository.DeleteUser(id);
+			await userRepository.DeleteUser(id);
 
 			return Ok();
 		}

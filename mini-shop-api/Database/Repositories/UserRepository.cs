@@ -13,17 +13,17 @@ namespace MiniShopApi.Database.Repositories
             this.applicationDbContext = applicationDbContext;
         }
 
-        public User GetUserById(string id)
+        public async Task<User> GetUserById(string id)
         {
-            return applicationDbContext.Users.Where(x => x.Id == id).SingleOrDefault();
+            return await applicationDbContext.Users.Where(x => x.Id == id).SingleOrDefaultAsync();
         }
 
-        public List<User> GetAllUsers()
+        public async Task<List<User>> GetAllUsers()
         {
-            return applicationDbContext.Users.ToList();
+            return await applicationDbContext.Users.ToListAsync();
         }
 
-        public User CreateUser(string name, string surename)
+        public async Task<User> CreateUser(string name, string surename)
         {
             var newUser = new User
             {
@@ -32,12 +32,12 @@ namespace MiniShopApi.Database.Repositories
             };
 
             var addedUser = applicationDbContext.Users.Add(newUser);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
 
             return addedUser.Entity;
         }
         
-        public void UpdateUser(string id,string name, string surename)
+        public async Task UpdateUser(string id,string name, string surename)
         {
             var userToUpdate = applicationDbContext.Users.Where(x => x.Id == id).SingleOrDefault();
 
@@ -49,10 +49,10 @@ namespace MiniShopApi.Database.Repositories
             userToUpdate.Name = name;
             userToUpdate.Surname = surename;
 
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
         }
 
-        public void DeleteUser(string id)
+        public async Task DeleteUser(string id)
         {
             var userToDelete = applicationDbContext.Users.SingleOrDefault(x => x.Id == id);
 
@@ -62,7 +62,7 @@ namespace MiniShopApi.Database.Repositories
             }
 
             applicationDbContext.Users.Remove(userToDelete);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
         }
 
     }
