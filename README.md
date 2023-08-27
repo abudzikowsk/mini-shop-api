@@ -6,11 +6,28 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 
 ## Features
 
-- **Product Management:** Allows users to perform CRUD operations on products. They can create new products, update existing ones, and delete products from the inventory.
+### Orders:
 
-- **Order Management:** Users can create orders, specifying the products they want to purchase. Orders can be retrieved and managed through dedicated endpoints.
+- **Retrieve Orders**: Use the `GET /orders` endpoint to retrieve a list of all orders.
+- **Create Order**: Utilize the `POST /orders` endpoint to create a new order.
+- **Retrieve Specific Order**: Access details of a specific order using `GET /orders/{id}`.
+- **Delete Order**: Delete an order with the `DELETE /orders/{id}` endpoint.
 
-- **User Management:** Provides endpoints for user management, including user registration, authentication, and authorization. Users can sign up, log in, and access features based on their roles.
+### Products:
+
+- **Retrieve Products**: Fetch a list of all products using the `GET /products` endpoint.
+- **Create Product**: Create a new product by sending a POST request to `/products`.
+- **Retrieve Specific Product**: Get details of a specific product via `GET /products/{id}`.
+- **Update Product**: Update product details using the `PUT /products/{id}` endpoint.
+- **Delete Product**: Delete a product using the `DELETE /products/{id}` endpoint.
+
+### User:
+
+- **Retrieve Users**: Retrieve a list of all users using the `GET /users` endpoint.
+- **Create User**: Create a new user by sending a POST request to `/users`.
+- **Retrieve Specific User**: Access details of a specific user with `GET /users/{id}`.
+- **Update User**: Update user details through the `PUT /users/{id}` endpoint.
+- **Delete User**: Delete a user using the `DELETE /users/{id}` endpoint.
 
 ## Technology Stack
 
@@ -22,25 +39,28 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 
 ## Endpoints
 
-1. **Products:**
-   - `GET /api/products`: Retrieve a list of all products.
-   - `GET /api/products/{id}`: Retrieve details of a specific product.
-   - `POST /api/products`: Create a new product.
-   - `PUT /api/products/{id}`: Update details of a product.
-   - `DELETE /api/products/{id}`: Delete a product.
+### Orders:
 
-2. **Orders:**
-   - `GET /api/orders`: Retrieve a list of all orders.
-   - `GET /api/orders/{id}`: Retrieve details of a specific order.
-   - `POST /api/orders`: Create a new order.
-   - `PUT /api/orders/{id}`: Update details of an order.
-   - `DELETE /api/orders/{id}`: Delete an order.
+- `GET /orders`: Retrieve a list of all orders.
+- `POST /orders`: Create a new order.
+- `GET /orders/{id}`: Retrieve details of a specific order.
+- `DELETE /orders/{id}`: Delete an order.
 
-3. **Users:**
-   - `POST /api/users/register`: Register a new user.
-   - `POST /api/users/login`: Log in an existing user.
-   - `GET /api/users/{id}`: Retrieve user profile.
-   - `PUT /api/users/{id}`: Update user profile.
+### Products:
+
+- `GET /products`: Retrieve a list of all products.
+- `POST /products`: Create a new product.
+- `GET /products/{id}`: Retrieve details of a specific product.
+- `PUT /products/{id}`: Update details of a product.
+- `DELETE /products/{id}`: Delete a product.
+
+### User:
+
+- `GET /users`: Retrieve a list of all users.
+- `POST /users`: Create a new user.
+- `GET /users/{id}`: Retrieve details of a specific user.
+- `PUT /users/{id}`: Update details of a user.
+- `DELETE /users/{id}`: Delete a user.
 
 ## Setup and Installation
 
@@ -50,3 +70,23 @@ The Mini Shop API is a .NET Core project that serves as the backend for a mini e
 4. Configure the database connection string in `appsettings.json`.
 5. Apply database migrations: `dotnet ef database update`
 6. Run the application: `dotnet run`
+
+## Possible Use Cases after expanding the application:
+
+1. **Integration with External Systems**: The ability to integrate the API with other systems, such as accounting or inventory systems.
+
+2. **Data Analytics**: Utilizing data from the API to analyze sales trends, customer behaviors, and other business aspects.
+
+3. **Order-Based Recommendations**: The system can suggest product recommendations based on previous customers' purchases.
+
+4. **Loyalty Programs**: Implementing a loyalty program where customers earn points for purchases and can redeem them for rewards.
+
+5. **Returns and Complaints Handling**: Allowing customers to initiate returns and complaints using relevant endpoints.
+
+6. **Statistical Overview**: Administrators can generate reports and statistics about sales, product popularity, and user activity.
+
+7. **Customer Support**: The ability to provide customer support through interactions with the API.
+
+8. **Payment Integration**: Extending the API to integrate with various online payment providers.
+
+9. **Transportation System Integration**: The capability to send delivery information and track shipments.
