@@ -4,6 +4,10 @@
 
 The Mini Shop API is a .NET Core project that serves as the backend for a mini e-commerce application. It provides endpoints for creating, deleting, updating, and retrieving products, orders, and users. The project is built using .NET 7, Entity Framework, and Microsoft SQL Server.
 
+## Swagger
+
+![Main Page](./images/IMG_2062.png)
+
 ## Features
 
 ### Orders:
